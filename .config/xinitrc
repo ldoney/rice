@@ -1,7 +1,8 @@
 # !/bin/sh
 
 # set any system-dependent environment variables here
-export POLYBAR="$XDG_CONFIG_HOME/polybar/default.ini" # path to the polybar loaded on startup
+export POLYBAR="$XDG_CONFIG_HOME/polybar/config.ini" # path to the polybar loaded on startup
+export POLYBAR_DPI=222 # Polybar DPI
 export BAR_HEIGHT=45 # matched by polybar and dmenu
 
 # icons sourced by lf at launch
@@ -13,6 +14,9 @@ export BAR_HEIGHT=45 # matched by polybar and dmenu
 
 # source xprofile which launches all the programs 
 . ~/.xprofile
+
+# change pointer to mouse click
+xsetroot -cursor_name left_ptr &
 
 # starts bspwm, the default window manager
 exec bspwm

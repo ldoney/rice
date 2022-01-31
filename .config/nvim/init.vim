@@ -72,9 +72,8 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
 		set encoding=utf8
 
 
-		" set the max line length to 80 characters.
-		" this doesn't break already existing lines.
-		set textwidth=80
+		" turn off line breaking
+		set textwidth=0
 
 		"shows a column at character 80, where the text wraps
 		" set cc=80

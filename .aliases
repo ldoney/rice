@@ -1,0 +1,4 @@
+alias ls="ls --color=auto"
+alias ll="ls -al"
+alias vim="nvim"
+export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin

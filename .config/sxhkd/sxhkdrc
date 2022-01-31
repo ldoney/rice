@@ -6,6 +6,43 @@
 super + shift + Escape
 	pkill -USR1 -x sxhkd
 
+# ---------- Fn keys ------------
+XF86AudioMute
+	pactl set-sink-mute 0 toggle
+
+XF86AudioLowerVolume 
+	pactl set-sink-volume @DEFAULT_SINK@ -1000
+
+XF86AudioRaiseVolume 
+	pactl set-sink-volume @DEFAULT_SINK@ +1000
+
+XF86AudioPrev
+	playerctl previous
+
+XF86AudioNext
+	playerctl next
+
+XF86AudioPlay
+	playerctl play-pause
+
+XF86MonBrightnessUp
+	setbacklight +10
+
+XF86MonBrightnessDown
+	setbacklight -10
+
+# Switch in/out of monocle mode
+super + m
+	bpsc desktop -l next
+
+# simple lock
+super + shift + l
+	slock
+
+# obsidian
+super + o 
+	obsidian
+
 # open screenshot menu or record videos
 super + {_,alt + }Print
 	{screenshot, record}
@@ -51,7 +88,7 @@ super + alt + {t,shift + t,s,f}
 # focus/move given window
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
-
+	
 # Focus or send a window to the given desktop
 # Remember to sync this with the number of desktops you have with bspwm
 # Note that this works with multiple monitors!

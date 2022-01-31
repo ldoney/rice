@@ -7,10 +7,11 @@
 screenshot_dir="$HOME/Images/screenshots"
 
 case "$(printf "selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)\\nselected area\\ncurrent window\\nfull screen" | dm -i -p "Screenshot")" in
-	"selected area") maim -s --hidecursor "${screenshot_dir}/img-selection-$(date '+%y%m%d-%H%M-%S').png" ;;
-	"current window") maim --hidecursor -i "$(xdotool getactivewindow)" "${screenshot_dir}/img-window-$(date '+%y%m%d-%H%M-%S').png" ;;
-	"full screen") maim --hidecursor "${screenshot_dir}/img-fullscreen-$(date '+%y%m%d-%H%M-%S').png" ;;
-	"selected area (copy)") maim -s --hidecursor | xclip -selection clipboard -t image/png ;;
-	"current window (copy)") maim --hidecursor -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png ;;
-	"full screen (copy)") maim --hidecursor | xclip -selection clipboard -t image/png ;;
+	"selected area") sleep 1 && maim -s --hidecursor "${screenshot_dir}/img-selection-$(date '+%y%m%d-%H%M-%S').png" && notify-send "Successfuly saved image at ${screenshot_dir}/img-selection-$(date '+%y%m%d-%H%M-%S').png" ;;
+	"current window") maim --hidecursor -i "$(xdotool getactivewindow)" "${screenshot_dir}/img-window-$(date '+%y%m%d-%H%M-%S').png" && notify-send "Successfuly saved image at ${screenshot_dir}/img-window-$(date '+%y%m%d-%H%M-%S').png" ;;
+	"full screen") maim --hidecursor "${screenshot_dir}/img-fullscreen-$(date '+%y%m%d-%H%M-%S').png" && notify-send "Successfuly saved image at ${screenshot_dir}/img-fullscreen-$(date '+%y%m%d-%H%M-%S').png" ;;
+	"selected area (copy)") maim -s --hidecursor | xclip -selection clipboard -t image/png  && notify-send "Copied to clipboard!" ;;
+	"current window (copy)") maim --hidecursor -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png && notify-sen "Copied to clipboard!" ;;
+	"full screen (copy)") maim --hidecursor | xclip -selection clipboard -t image/png && notify-send "Copied to clipboard!" ;;
 esac
+

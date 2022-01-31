@@ -22,4 +22,6 @@ unclutter & # hide mouse if inactive
 setxkbmap -option caps:escape
 
 # WM Compositors. Only use one
-sleep 1 && picom --experimental-backends & # allows you to use blur on the main picom repo
+sleep 1 && picom --experimental-backends --config ${XDG_CONFIG_HOME:-$HOME/.config}/picom/picom.conf & # allows you to use blur on the main picom repo
+
+sleep 1 && dunst & # set up dunst

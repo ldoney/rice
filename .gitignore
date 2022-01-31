@@ -66,8 +66,16 @@
 # this file is my custom prompt profile
 !.config/zsh/.p10k.zsh
 
+!.config/dunst
+!.config/picom
+
 # whitelisted files
 !.profile
 !.zprofile
 !.xinitrc
 !.xprofile
+.local/bin/wheel
+.local/bin/pip
+.local/bin/pip3
+.local/bin/pip3.10
+!.aliases
