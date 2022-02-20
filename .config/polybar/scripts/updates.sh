@@ -2,7 +2,21 @@
 
 NOTIFY_ICON=/usr/share/icons/Papirus/32x32/apps/system-software-update.svg
 
-get_total_updates() { UPDATES=$(checkupdates 2>/dev/null | wc -l); }
+get_updates_yay() { 
+    UPDATES_YAY=$(sh $XDG_CONFIG_HOME/polybar/scripts/checkupdates yay 2> /dev/null); 
+    UPDATES_COUNT_YAY=$(echo "$UPDATES_YAY" | sed '/^\s*$/d' | wc -l)
+}
+
+get_updates_pacman() { 
+    UPDATES_PACMAN=$(sh $XDG_CONFIG_HOME/polybar/scripts/checkupdates pacman 2> /dev/null); 
+    UPDATES_COUNT_PACMAN=$(echo "$UPDATES_PACMAN" | sed '/^\s*$/d' | wc -l)
+}
+
+get_total_updates() { 
+    get_updates_yay
+    get_updates_pacman
+    UPDATES=$((UPDATES_COUNT_PACMAN + UPDATES_COUNT_YAY))
+}
 
 while true; do
     get_total_updates
@@ -25,9 +39,9 @@ while true; do
     # every 10 seconds another check for updates is done
     while (( UPDATES > 0 )); do
         if (( UPDATES == 1 )); then
-            echo " $UPDATES"
+            echo " yay: $UPDATES_COUNT_YAY pacman: $UPDATES_COUNT_PACMAN"
         elif (( UPDATES > 1 )); then
-            echo " $UPDATES"
+            echo " yay: $UPDATES_COUNT_YAY pacman: $UPDATES_COUNT_PACMAN"
         else
             echo " None"
         fi

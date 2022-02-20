@@ -25,4 +25,13 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1 && exec startx
+
+# Start graphical server on tty2 if not already running
+[ "$(tty)" = "/dev/tty2" ] && ! pidof Xorg >/dev/null 2>&1 && exec startxfce4
+
+if [[ "$(tty)" == "/dev/tty3" ]]; then
+    [[ -n "$CDM_SPAWN" ]] && return
+    # Avoid executing cdm(1) when X11 has already been started.
+    [[ -z "$DISPLAY$SSH_TTY$(pgrep xinit)" ]] && exec cdm
+fi
 . "$HOME/.local/share/cargo/env"

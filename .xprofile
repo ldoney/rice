@@ -24,4 +24,12 @@ setxkbmap -option caps:escape
 # WM Compositors. Only use one
 sleep 1 && picom --experimental-backends --config ${XDG_CONFIG_HOME:-$HOME/.config}/picom/picom.conf & # allows you to use blur on the main picom repo
 
+# Settings for Japanese input
+export GTK_IM_MODULE='ibus'
+export QT_IM_MODULE='ibus'
+export XMODIFIERS=@im='ibus'
+
+#Toolbar for anthy
+ibus-daemon -drx
+
 sleep 1 && dunst & # set up dunst

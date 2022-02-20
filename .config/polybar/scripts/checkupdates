@@ -77,13 +77,14 @@ fi
 readonly ALL_OFF BOLD BLUE GREEN RED YELLOW
 
 
-if (( $# > 0 )); then
+if (( $# > 1 )); then
 	echo "${myname} v${myver}"
 	echo
 	echo "Safely print a list of pending updates"
 	echo
-	echo "Usage: ${myname}"
+	echo "Usage: ${myname} service"
 	echo
+	echo 'Service should be the name of the package distributor (pacman, yay)'
 	echo 'Note: Export the "CHECKUPDATES_DB" variable to change the path of the temporary database.'
 	exit 0
 fi
@@ -110,8 +111,11 @@ if ! fakeroot -- pacman -Sy --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /
        error 'Cannot fetch updates'
        exit 1
 fi
-pacman -Qu --dbpath "$CHECKUPDATES_DB" 2> /dev/null | grep -v '\[.*\]'
-
+case $1 in
+	"pacman") pacman -Qu --dbpath "$CHECKUPDATES_DB" 2> /dev/null | grep -v '\[.*\]' ;;
+        "yay") yay -Qu 2> /dev/null | grep -v '\[.*\]' ;;
+	*) error "Invalid repo $1";;
+esac
 exit 0
 
 # vim: set noet:
