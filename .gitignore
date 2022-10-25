@@ -13,7 +13,13 @@
 !.local/bin/
 !.local/share/
 
+GitHub/matlab
+
 .local/share/*
+.local/bin/*
+.local/share/applications/*.desktop
+.local/share/applications/wine*
+.local/share/applications/mimeinfo.cache
 !.local/share/fonts/
 .local/share/fonts/.uuid
 !.local/share/applications/

@@ -28,20 +28,28 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
 	Plug 'jparise/vim-graphql' " GQL syntax highlighting
 	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']} " Markdown previewer
 	Plug 'lervag/vimtex' " LaTeX support. you need `latex-mk` from the AUR
+	Plug 'autozimu/LanguageClient-neovim', {
+		\ 'branch': 'next',
+		\ 'do': 'bash install.sh',
+		\ }
+
+	let g:LanguageClient_serverCommands = {
+	\ 'systemverilog': ['svls'],
+	\ }
+	Plug 'tomlion/vim-solidity'
 
 	" JsDoc generation
 	Plug 'heavenshell/vim-jsdoc', { 
 	\ 'for': ['javascript', 'javascript.jsx','typescript'], 
 	\ 'do': 'make install'
 	\}
-
+	Plug 'dart-lang/dart-vim-plugin'
 	" Theming - for theme settings see local.vim
 	Plug 'sainnhe/sonokai' 
 	Plug 'AlessandroYorba/Alduin'
 	Plug 'morhetz/gruvbox'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
-	
 	" Appearance {{{
 		" For more info about any of these `:help set`
 		
@@ -175,6 +183,8 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
 		Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 		Plug 'ryanoasis/vim-devicons'
 
+		Plug 'dart-lang/dart-vim-plugin'
+		Plug 'thosakwe/vim-flutter'
 		" <Leader> + n toggles NERDTree
 		nmap <silent><C-n> :NERDTreeToggle<CR> 
 

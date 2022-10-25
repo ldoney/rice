@@ -127,4 +127,11 @@ super + {_,shift + }q
 	# bspc wm -h on
 
 # }}}
+super + z
+    bspc node focused -t floating; bspc node -d '^12'
 
+alt + Tab
+        rofi -show window -window-thumbnail
+
+ctrl + super + {Left,Down,Up,Right}
+    $HOME/.config/bspwm/resize.sh {left,down,up,right}

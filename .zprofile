@@ -1,6 +1,9 @@
 # Recursively adds `~/.local/bin` subdirectories to $PATH
 # This is to make nested scripts like `setbg` accessible
 export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
+export PATH="$PATH:$(du "$HOME/.matlab-symlinks" | cut -f2 | paste -sd ':')"
+
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 export EDITOR="nvim" # default text editor is neovim
 export TERMINAL="st" # default terminal is suckless' simple terminal
@@ -35,3 +38,4 @@ if [[ "$(tty)" == "/dev/tty3" ]]; then
     [[ -z "$DISPLAY$SSH_TTY$(pgrep xinit)" ]] && exec cdm
 fi
 . "$HOME/.local/share/cargo/env"
+alias codeapeel='java -jar "/home/lincoln/College/Fall 22/ENEE350/codeapeel/CodeAPeelC.jar"'

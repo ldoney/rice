@@ -1,8 +1,13 @@
 # !/bin/sh
 
+xrandr --output eDP-1 --scale 1.0 --mode 2560x1440
+xrandr --output DP-2-1 --auto --output DP-2-2 --auto --right-of DP-2-1
+xrandr --output DP-2-1 --auto --output eDP-1 --auto --below DP-2-1
+xrandr --output DP-2-1 --scale 1.0 --mode 1920x1080
+xrandr --output DP-2-2 --scale 1.0 --mode 1920x1080
 # set any system-dependent environment variables here
 export POLYBAR="$XDG_CONFIG_HOME/polybar/config.ini" # path to the polybar loaded on startup
-export POLYBAR_DPI=222 # Polybar DPI
+export POLYBAR_DPI=150 # Polybar DPI
 export BAR_HEIGHT=45 # matched by polybar and dmenu
 
 # icons sourced by lf at launch
@@ -20,3 +25,18 @@ xsetroot -cursor_name left_ptr &
 
 # starts bspwm, the default window manager
 exec bspwm
+
+export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
+export PATH=$JAVA_HOME/bin:$PATH
+
+export ANDROID_SDK_ROOT='/opt/android-sdk'
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools/
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin/
+export PATH=$PATH:$ANDROID_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/
+
+alias google-chrome="google-chrome-stable"
+export CHROME_EXECUTABLE=google-chrome-stable
+export PYTHONPATH=~/Work/target_tools/control
+
+export _JAVA_AWT_WM_NONREPARENTING=1
